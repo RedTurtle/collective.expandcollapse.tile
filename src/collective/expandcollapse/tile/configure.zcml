@@ -7,21 +7,12 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <!--
-    Be careful if you use general includeDependencies, it can have sideffects!
-    Better import explicite packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
-
   <include package=".browser" />
-
-  <include file="permissions.zcml" />
-
   <include file="upgrades.zcml" />
 
   <genericsetup:registerProfile
       name="default"
-      title="collective.expandcollapse.tile"
+      title="Expand/Collapse tile"
       directory="profiles/default"
       description="Installs the collective.expandcollapse.tile add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -30,7 +21,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="collective.expandcollapse.tile (uninstall)"
+      title="Expand/Collapse tile (uninstall)"
       directory="profiles/uninstall"
       description="Uninstalls the collective.expandcollapse.tile add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"

@@ -44,7 +44,9 @@ $animation-speed: 0.3s;
   .tileContent {
     max-height: 0;
     overflow: hidden;
-    transition: max-height $animation-speed ease-in-out;
+    transition: max-height 0.3s ease-in-out, top 0.5s ease-out;
+    position: relative;
+    top: 0;
   }
 
   .showMore {
@@ -63,6 +65,8 @@ $animation-speed: 0.3s;
     .tileBody,
     .tileContent {
       max-height: 10000px;
+      top: 15px;
+      transition: top 0.1s ease-in;
 
       h2 {
         margin: 5px 0 10px;

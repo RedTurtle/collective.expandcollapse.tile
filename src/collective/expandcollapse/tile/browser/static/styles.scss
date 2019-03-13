@@ -41,52 +41,20 @@ $animation-speed: 0.3s;
 
 @mixin make-collapsible() {
   .tileBody,
-  .tileContent {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out, top 0.5s ease-out;
-    position: relative;
-    top: 0;
-  }
-
+  .tileContent,
   .showMore {
     display: none;
   }
 
-  &:not(.open) {
-    .tileBody,
-    .tileContent {
-      padding: 0;
-      margin: 0;
-    }
-  }
-
   &.open {
-    .tileBody,
-    .tileContent {
-      max-height: 10000px;
-      top: 15px;
-      transition: top 0.1s ease-in;
-
-      h2 {
-        margin: 5px 0 10px;
-      }
-    }
-
     .showMore {
       display: block;
     }
-
-    .tileTitle {
-      margin-bottom: 15px;
-    }
-
     .tile-collapse-button {
       .title-icon {
         svg.fa-angle-down {
           display: none;
         }
-
         svg.fa-angle-up {
           display: inline-block;
         }
@@ -103,6 +71,12 @@ $animation-speed: 0.3s;
   > .collapsible {
     @media (max-width: 991px) {
       @include make-collapsible;
+    }
+    @media (min-width: 992px) {
+      .tileBody,
+      .tileContent {
+        display: block !important;
+      }
     }
   }
 }

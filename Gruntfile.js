@@ -1,110 +1,110 @@
-const sass = require("node-sass");
+const sass = require('node-sass');
 
 module.exports = function(grunt) {
-  "use strict";
+  'use strict';
 
-  require("load-grunt-tasks")(grunt);
-  var productRoot = "src/collective/expandcollapse/tile/browser/static";
+  require('load-grunt-tasks')(grunt);
+  var productRoot = 'src/collective/expandcollapse/tile/browser/static';
   grunt.initConfig({
     sass: {
       options: {
         implementation: sass,
         sourceMap: true,
-        outputStyle: "compressed"
+        outputStyle: 'compressed',
       },
       dist: {
         files: {
-          "./src/collective/expandcollapse/tile/browser/static/dist/styles.css":
-            "./src/collective/expandcollapse/tile/browser/static/styles.scss"
-        }
-      }
+          './src/collective/expandcollapse/tile/browser/static/dist/styles.css':
+            './src/collective/expandcollapse/tile/browser/static/styles.scss',
+        },
+      },
     },
     requirejs: {
-      "expand-collapse-tile": {
+      'expand-collapse-tile': {
         options: {
-          baseUrl: "./",
+          baseUrl: './',
           generateSourceMaps: true,
           preserveLicenseComments: false,
           paths: {
-            jquery: "empty:",
-            "expand-collapse-tile-pattern": `${productRoot}/expand_collapse`
+            jquery: 'empty:',
+            'expand-collapse-tile-pattern': `${productRoot}/expand_collapse`,
           },
           wrapShim: true,
           name: `${productRoot}/dist/bundle.js`,
-          exclude: ["jquery"],
+          exclude: ['jquery'],
           out: `${productRoot}/dist/expand_collapse_compiled.js`,
-          optimize: "none"
-        }
-      }
+          optimize: 'none',
+        },
+      },
     },
     babel: {
       options: {
         sourceMap: true,
-        presets: ["env"]
+        presets: ['env'],
       },
       dist: {
         files: {
-          "./src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js":
-            "./src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js"
-        }
-      }
+          './src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js':
+            './src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js',
+        },
+      },
     },
 
     uglify: {
-      "expand-collapse-tile": {
+      'expand-collapse-tile': {
         options: {
           sourceMap: true,
           sourceMapName: `./${productRoot}/dist/expand_collapse_compiled.js.map`,
-          sourceMapIncludeSources: false
+          sourceMapIncludeSources: false,
         },
         files: {
-          "./src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.min.js": [
-            "./src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js"
-          ]
-        }
-      }
+          './src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.min.js': [
+            './src/collective/expandcollapse/tile/browser/static/dist/expand_collapse_compiled.js',
+          ],
+        },
+      },
     },
-    // postcss: {
-    //   options: {
-    //     map: {
-    //       inline: false
-    //     },
-    //     processors: [
-    //       require("autoprefixer")({
-    //         grid: true,
-    //         browsers: ["last 2 versions", "ie >= 11", "iOS >= 6"]
-    //       }),
-    //       require("postcss-flexbugs-fixes")()
-    //     ]
-    //   },
-    //   dist: {
-    //     src: [`${productRoot}/styles.css`]
-    //   }
-    // },
+    postcss: {
+      options: {
+        map: {
+          inline: false,
+        },
+        processors: [
+          require('autoprefixer')({
+            grid: true,
+            browsers: ['last 2 versions', 'ie >= 11', 'iOS >= 9'],
+          }),
+          require('postcss-flexbugs-fixes')(),
+        ],
+      },
+      dist: {
+        src: [`${productRoot}/dist/styles.css`],
+      },
+    },
     watch: {
       scripts: {
         files: [`${productRoot}/expand_collapse.js`],
-        tasks: ["requirejs", "babel", "uglify"],
+        tasks: ['requirejs', 'babel', 'uglify'],
         options: {
-          livereload: true
-        }
+          livereload: true,
+        },
       },
       css: {
         files: `${productRoot}/styles.scss`,
-        tasks: ["sass"],
+        tasks: ['sass', 'postcss'],
         options: {
-          livereload: true
-        }
-      }
-    }
+          livereload: true,
+        },
+      },
+    },
   });
 
-  grunt.registerTask("default", ["watch"]);
-  grunt.registerTask("compile", [
-    // "postcss",
-    "sass",
-    "requirejs",
-    "babel",
-    "uglify"
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('compile', [
+    'sass',
+    'postcss',
+    'requirejs',
+    'babel',
+    'uglify',
   ]);
 };

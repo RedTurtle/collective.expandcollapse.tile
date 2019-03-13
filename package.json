@@ -9,8 +9,8 @@
   "license": "GPL-2.0",
   "scripts": {
     "compile": "grunt compile",
-    "develop": "grunt",
-    "sass": "grunt sasso"
+    "develop": "grunt compile && grunt",
+    "start": "grunt compile && grunt"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

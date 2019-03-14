@@ -4,7 +4,9 @@
   <records prefix="plone.resources/expand-collapse-tile"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
       <value key="js">++plone++collective.expandcollapse.tile/expand_collapse.js</value>
-      <value key="css">++plone++collective.expandcollapse.tile/dist/styles.css</value>
+      <value key="css">
+        <element>++plone++collective.expandcollapse.tile/dist/styles.css</element>
+      </value>
   </records>
 
   <records prefix="plone.bundles/expand-collapse-tile-bundle"

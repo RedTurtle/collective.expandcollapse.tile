@@ -27,10 +27,9 @@ module.exports = function(grunt) {
           preserveLicenseComments: false,
           paths: {
             jquery: 'empty:',
-            'expand-collapse-tile-pattern': `${productRoot}/expand_collapse`,
           },
           wrapShim: true,
-          name: `${productRoot}/dist/bundle.js`,
+          name: `${productRoot}/expand_collapse.js`,
           exclude: ['jquery'],
           out: `${productRoot}/dist/expand_collapse_compiled.js`,
           optimize: 'none',
@@ -104,7 +103,7 @@ module.exports = function(grunt) {
     'sass',
     'postcss',
     'requirejs',
-    'babel',
+    // 'babel',
     'uglify',
   ]);
 };

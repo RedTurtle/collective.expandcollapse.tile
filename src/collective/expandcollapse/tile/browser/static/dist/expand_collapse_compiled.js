@@ -1,9 +1,6 @@
-"use strict";
-
-require(['jquery'], function ($) {
+require(['jquery'], function($) {
   'use strict';
-
-  $(document).on('click', '.tile-collapse-button', function (e) {
+  $(document).on('click', '.tile-collapse-button', function(e) {
     var collapse = $(e.target).closest('.collapsible, .collapsible-desktop');
     collapse.toggleClass('open');
     collapse.find('.tileBody, .tileContent').slideToggle();
@@ -11,30 +8,35 @@ require(['jquery'], function ($) {
 
   function addButton(selector) {
     var titleDOM = $(selector).find('h2.tileTitle');
-    titleDOM.each(function () {
+    titleDOM.each(function() {
       var title = $(this).text();
       var collapsible = $(this).closest('.collapsible, .collapsible-desktop');
-      $(this).html('<button class="tile-collapse-button"><span class="title-content">'.concat(title).concat('</span><span class="title-icon"><i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></span></button>'));
+
+      $(this).html(
+        '<button class="tile-collapse-button"><span class="title-content">'
+          .concat(title)
+          .concat(
+            '</span><span class="title-icon"><i class="fas fa-angle-down"></i><i class="fas fa-angle-up"></i></span></button>'
+          )
+      );
 
       if ($(collapsible).hasClass('default-open')) {
         $(collapsible).addClass('open');
       }
     });
   }
-
   function removeButton(selector) {
     var titleDOM = $(selector).find('h2.tileTitle');
-    titleDOM.each(function () {
+
+    titleDOM.each(function() {
       var title = $(this).text();
       $(this).html(title);
     });
   }
-
   function handleTileCollapse() {
     if ($('.tileWrapper > .collapsible-desktop').length) {
       addButton('.tileWrapper > .collapsible-desktop');
     }
-
     if ($('.tileWrapper > .collapsible').length) {
       if (window.innerWidth <= 991) {
         addButton('.tileWrapper > .collapsible');
@@ -44,25 +46,22 @@ require(['jquery'], function ($) {
     }
   }
 
-  $(window).on('resize orientationchange', function () {
+  $(window).on('resize orientationchange', function() {
     handleTileCollapse();
   });
-  $(function () {
+
+  $(function() {
     if ($('body').hasClass('userrole-anonymous')) {
       handleTileCollapse();
     } else {
-      $('.pat-tiles-management').on('rtTilesLoaded', function () {
+      $('.pat-tiles-management').on('rtTilesLoaded', function() {
         handleTileCollapse();
       });
     }
   });
 });
 
-define("expand-collapse-tile-pattern", function () {});
+define("src/collective/expandcollapse/tile/browser/static/expand_collapse.js", function(){});
 
-require(["expand-collapse-tile-pattern"], function () {
-  "use strict";
-});
 
-define("src/collective/expandcollapse/tile/browser/static/dist/bundle.js", function () {});
 //# sourceMappingURL=expand_collapse_compiled.js.map

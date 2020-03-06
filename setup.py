@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.expandcollapse.tile',
-    version='1.0a1',
+    version='1.0.0',
     description="Add ability to expand/collapse a tile with a specified CSS class",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers

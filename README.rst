@@ -22,6 +22,9 @@ Possible classes are:
 - **collapsible-desktop**: enable expand/collapse feature for Desktop displays (width > 991px)
 - **collapsible**: enable expand/collapse for small screens only (width < 991px)
 
+In addition to these two mutually exclusive classes, you can also add the class **accordion** so
+when one of them is opened, the others will be closed.
+
 Installation
 ------------
 

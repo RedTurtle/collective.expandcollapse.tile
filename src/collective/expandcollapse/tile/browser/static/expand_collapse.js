@@ -1,17 +1,25 @@
-require(['jquery'], function($) {
-  'use strict';
-  $(document).on('click', '.tile-collapse-button', function(e) {
-    var collapse = $(e.target).closest('.collapsible, .collapsible-desktop');
-    collapse.toggleClass('open');
-    collapse.find('.tileBody, .tileContent').slideToggle();
+require(["jquery"], function ($) {
+  "use strict";
+  $(document).on("click", ".tile-collapse-button", function (e) {
+    var collapse = $(e.target).closest(".collapsible, .collapsible-desktop");
+    if (collapse.hasClass("accordion")) {
+      $(".collapsible, .collapsible-desktop").each(function () {
+        if (!$(this).is(collapse)) {
+          $(this).removeClass("open");
+          $(this).find(".tileBody, .tileContent").slideUp();
+        }
+      });
+    }
+    collapse.toggleClass("open");
+    collapse.find(".tileBody, .tileContent").slideToggle();
   });
 
   function addButton(selector) {
-    var titleDOM = $(selector).find('h2.tileTitle');
-    titleDOM.each(function() {
-      if ($(this).children('a').length === 0) {
+    var titleDOM = $(selector).find("h2.tileTitle");
+    titleDOM.each(function () {
+      if ($(this).children("a").length === 0) {
         var title = $(this).text();
-        var collapsible = $(this).closest('.collapsible, .collapsible-desktop');
+        var collapsible = $(this).closest(".collapsible, .collapsible-desktop");
 
         $(this).html(
           '<a class="tile-collapse-button"><span class="title-content">'
@@ -21,54 +29,54 @@ require(['jquery'], function($) {
             )
         );
 
-        if ($(collapsible).hasClass('default-open')) {
-          $(collapsible).addClass('open');
+        if ($(collapsible).hasClass("default-open")) {
+          $(collapsible).addClass("open");
         }
       }
     });
   }
   function removeButton(selector) {
-    var titleDOM = $(selector).find('h2.tileTitle');
+    var titleDOM = $(selector).find("h2.tileTitle");
 
-    titleDOM.each(function() {
-      if ($(this).children('a').length > 0) {
+    titleDOM.each(function () {
+      if ($(this).children("a").length > 0) {
         var title = $(this).text();
         $(this).html(title);
       }
     });
   }
   function handleTileCollapse() {
-    if ($('.tileWrapper > .collapsible-desktop').length) {
-      addButton('.tileWrapper > .collapsible-desktop');
+    if ($(".tileWrapper > .collapsible-desktop").length) {
+      addButton(".tileWrapper > .collapsible-desktop");
     }
-    if ($('.tileWrapper > .collapsible').length) {
+    if ($(".tileWrapper > .collapsible").length) {
       if (window.innerWidth <= 991) {
-        addButton('.tileWrapper > .collapsible');
+        addButton(".tileWrapper > .collapsible");
       } else {
-        removeButton('.tileWrapper > .collapsible');
+        removeButton(".tileWrapper > .collapsible");
       }
     }
   }
 
-  $(window).on('resize orientationchange', function() {
+  $(window).on("resize orientationchange", function () {
     handleTileCollapse();
   });
 
-  $(function() {
+  $(function () {
     handleTileCollapse();
 
     // browser has MutationObserver support
     if (window.MutationObserver) {
       // https://developer.mozilla.org/it/docs/Web/API/MutationObserver
       // Select the node that will be observed for mutations
-      $('.pat-tiles-management').each(function() {
+      $(".pat-tiles-management").each(function () {
         // Options for the observer (which mutations to observe)
         var config = { attributes: false, childList: true, subtree: true };
 
         // Callback function to execute when mutations are observed
-        var callback = function(mutationsList, observer) {
-          mutationsList.forEach(function(mutation) {
-            if (mutation.type == 'childList') {
+        var callback = function (mutationsList, observer) {
+          mutationsList.forEach(function (mutation) {
+            if (mutation.type == "childList") {
               handleTileCollapse();
             }
           });
@@ -82,7 +90,7 @@ require(['jquery'], function($) {
       });
     } else {
       // browser has no MutationObserver support
-      $('.pat-tiles-management').on('rtTilesLoaded', function() {
+      $(".pat-tiles-management").on("rtTilesLoaded", function () {
         handleTileCollapse();
       });
     }

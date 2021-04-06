@@ -5,7 +5,7 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add accordion mode [nzambello]
 
 
 1.0.0 (2020-03-06)

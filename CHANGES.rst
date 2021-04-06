@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.1 (unreleased)
+1.0.1 (2021-04-06)
 ------------------
 
 - Add accordion mode [nzambello]

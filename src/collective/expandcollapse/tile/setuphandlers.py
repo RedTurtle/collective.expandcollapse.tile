@@ -10,6 +10,7 @@ class HiddenProfiles(object):
         """Hide uninstall profile from site-creation and quickinstaller."""
         return [
             'collective.expandcollapse.tile:uninstall',
+            'collective.expandcollapse.tile:to_2000',
         ]
 
 

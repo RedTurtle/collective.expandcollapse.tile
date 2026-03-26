@@ -1,4 +1,4 @@
-require(["jquery"], function ($) {
+(function ($) {
   "use strict";
   $(document).on("click", ".tile-collapse-button", function (e) {
     var collapse = $(e.target).closest(".collapsible, .collapsible-desktop");
@@ -95,4 +95,4 @@ require(["jquery"], function ($) {
       });
     }
   });
-});
+})(jQuery);

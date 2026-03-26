@@ -18,7 +18,13 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       post_handler=".setuphandlers.post_install"
       />
-
+  <genericsetup:registerProfile
+      name="to_2000"
+      title="Expand/Collapse tile (to 2000)"
+      directory="profiles/to_2000"
+      description=""
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
   <genericsetup:registerProfile
       name="uninstall"
       title="Expand/Collapse tile (uninstall)"

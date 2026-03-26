@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0.2 (unreleased)
+2.0.0 (2026-03-26)
 ------------------
 
 - Plone 6 compatibility. [cekk]
